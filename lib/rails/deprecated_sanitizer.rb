@@ -18,6 +18,10 @@ module Rails
     def white_list_sanitizer
       HTML::WhiteListSanitizer
     end
+
+    def safe_list_sanitizer
+      HTML::WhiteListSanitizer
+    end
   end
 end
 
@@ -27,6 +31,18 @@ module ActionView
       module ClassMethods
         redefine_method :sanitizer_vendor do
           Rails::DeprecatedSanitizer
+        end
+
+        redefine_method :full_sanitizer do
+          @full_sanitizer ||= sanitizer_vendor.full_sanitizer.new
+        end
+
+        redefine_method :link_sanitizer do
+          @link_sanitizer ||= sanitizer_vendor.link_sanitizer.new
+        end
+
+        redefine_method :safe_list_sanitizer do
+          @safe_list_sanitizer ||= sanitizer_vendor.safe_list_sanitizer.new
         end
 
         redefine_method :sanitized_protocol_separator do
