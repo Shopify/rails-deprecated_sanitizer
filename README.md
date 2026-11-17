@@ -1,3 +1,5 @@
+> **This repository is no longer maintained.** It has been archived by Shopify and receives no updates or security fixes.
+
 # Rails::Deprecated::Sanitizer
 
 In Rails 4.2 HTML sanitization has been rewritten using a more secure library.
